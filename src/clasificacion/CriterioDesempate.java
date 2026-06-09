@@ -1,0 +1,4 @@
+package clasificacion;
+
+interface CriterioDesempate {
+}
