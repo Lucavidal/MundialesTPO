@@ -8,4 +8,5 @@ void main() {
     String x = "Luca";
     String y= "Diego";
     String xy = x+y;
+    int sanlorenzo = 10;
 }
