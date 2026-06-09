@@ -9,4 +9,5 @@ void main() {
     String y= "Diego";
     String xy = x+y;
     int sanlorenzo = 10;
+    int cuervo = 1908;
 }
