@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul:    #1B3F8B;
+    --rojo:    #C62828;
+    --verde:   #2E7D32;
+    --naranja: #EF6C00;
+    --dorado:  #F9A825;
+    --bronce:  #B5703F;
+    --blanco:  #FFFFFF;
+    --fondo:   #0D1117;
+    --card:    #161B22;
+    --borde:   #30363D;
+  }
+
+  body {
+    background: var(--fondo);
+    color: var(--blanco);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--azul), var(--verde) 50%, var(--rojo));
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 3px solid var(--dorado);
+  }
+
+  .header-badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--dorado);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 0 20px rgba(249, 168, 37, .6);
+  }
+
+  .header-title {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 3px;
+  }
+
+  .header-sub {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--dorado);
+    letter-spacing: 4px;
+    margin-top: 2px;
+  }
+
+  .header-hosts {
+    font-size: 10px;
+    color: rgba(255, 255, 255, .7);
+    margin-top: 2px;
+  }
+
+  .container {
+    padding: 22px 28px;
+  }
+
+  .champion-banner {
+    text-align: center;
+    padding: 20px 40px;
+    margin-bottom: 24px;
+    background: linear-gradient(90deg, rgba(249,168,37,.2), rgba(249,168,37,.05), rgba(249,168,37,.2));
+    border: 3px solid var(--dorado);
+    border-radius: 16px;
+  }
+
+  .champion-banner .trophy-big {
+    font-size: 48px;
+  }
+
+  .champion-banner .ctitle {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--dorado);
+    letter-spacing: 5px;
+    margin-top: 6px;
+  }
+
+  .champion-banner .cname {
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 4px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .tab {
+    padding: 9px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border: 2px solid var(--borde);
+    background: transparent;
+    color: #8B949E;
+    transition: all .2s;
+  }
+
+  .tab.active {
+    border-color: var(--dorado);
+    color: var(--dorado);
+    background: rgba(249, 168, 37, .1);
+  }
+
+  .leyenda {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ley-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #8B949E;
+  }
+
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .group-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--color);
+  }
+
+  .group-header {
+    background: var(--color);
+    padding: 7px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .group-letter {
+    font-size: 22px;
+    font-weight: 900;
+    color: #000;
+  }
+
+  .group-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #000;
+    opacity: .65;
+  }
+
+  .group-body {
+    padding: 11px 13px;
+  }
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 1fr 26px 26px 26px 26px 30px;
+    font-size: 10px;
+    color: #6B7280;
+    margin-bottom: 3px;
+    text-align: center;
+  }
+
+  .table-header span:first-child {
+    text-align: left;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 1fr 26px 26px 26px 26px 30px;
+    align-items: center;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: 10px;
+  }
+
+  .table-row.top2 {
+    background: rgba(46, 125, 50, .12);
+    border-radius: 3px;
+  }
+
+  .table-row.top3 {
+    background: rgba(249, 168, 37, .10);
+    border-radius: 3px;
+  }
+
+  .team-cell {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .dot-verde {
+    background: var(--verde);
+  }
+
+  .dot-ambar {
+    background: var(--dorado);
+  }
+
+  .dot-gris {
+    background: #484F58;
+  }
+
+  .flag {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+    flex-shrink: 0;
+    box-shadow: 0 0 2px rgba(0,0,0,.4);
+    vertical-align: middle;
+  }
+
+  .flag-ph {
+    width: 20px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #484F58;
+    flex-shrink: 0;
+  }
+
+  .tname-g {
+    color: #E6EDF3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 85px;
+    font-size: 10px;
+  }
+
+  .cell {
+    text-align: center;
+    color: #8B949E;
+  }
+
+  .cell.pts {
+    color: var(--color);
+    font-weight: 800;
+    font-size: 11px;
+  }
+
+  .results-section {
+    margin-top: 9px;
+    border-top: 1px solid var(--borde);
+    padding-top: 7px;
+  }
+
+  .results-title {
+    font-size: 9px;
+    color: #484F58;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0;
+    font-size: 10px;
+  }
+
+  .result-team {
+    color: #8B949E;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .result-team.right {
+    text-align: right;
+  }
+
+  .result-score {
+    color: #E6EDF3;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 0 5px;
+    white-space: nowrap;
+  }
+
+  .result-meta {
+    font-size: 9px;
+    color: #484F58;
+    padding: 1px 0 3px 0;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .bracket-wrapper {
+    overflow-x: auto;
+    padding-bottom: 20px;
+  }
+
+  .bracket {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4px;
+    min-width: 1400px;
+    padding: 16px 8px;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+    min-width: 155px;
+    gap: 5px;
+  }
+
+  .col-center {
+    flex: 0 0 185px;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .round-label {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 3px;
+    width: 100%;
+    padding: 5px 0;
+    border-radius: 4px;
+  }
+
+  .col-azul {
+    background: var(--azul);
+    color: #fff;
+  }
+
+  .col-verde {
+    background: var(--verde);
+    color: #fff;
+  }
+
+  .col-naranja {
+    background: var(--naranja);
+    color: #fff;
+  }
+
+  .col-rojo {
+    background: var(--rojo);
+    color: #fff;
+  }
+
+  .col-dorado {
+    background: var(--dorado);
+    color: #000;
+  }
+
+  .col-bronce {
+    background: var(--bronce);
+    color: #fff;
+  }
+
+  .match {
+    background: var(--card);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 148px;
+    flex-shrink: 0;
+  }
+
+  .empty-match {
+    opacity: .4;
+  }
+
+  .match-team {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .match-divider {
+    height: 1px;
+    background: var(--borde);
+  }
+
+  .match-team.win {
+    background: rgba(249, 168, 37, .18);
+  }
+
+  .match-team.tbd {
+    opacity: .5;
+  }
+
+  .tname {
+    font-size: 10px;
+    font-weight: 500;
+    color: #E6EDF3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .match-team.win .tname {
+    color: var(--dorado);
+    font-weight: 700;
+  }
+
+  .score-block {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+
+  .pen {
+    font-size: 8px;
+    color: #8B949E;
+    white-space: nowrap;
+  }
+
+  .tscore {
+    font-size: 12px;
+    font-weight: 800;
+    color: #484F58;
+    min-width: 13px;
+    text-align: right;
+  }
+
+  .tscore.score-win {
+    color: var(--dorado);
+  }
+
+  .match-meta {
+    padding: 3px 8px;
+    background: rgba(255,255,255,.03);
+    border-top: 1px solid var(--borde);
+  }
+
+  .meta-hora {
+    font-size: 9px;
+    color: var(--dorado);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .meta-est {
+    font-size: 8px;
+    color: #6B7280;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .champ-center {
+    text-align: center;
+    padding: 12px 8px;
+    background: linear-gradient(135deg, rgba(249,168,37,.25), rgba(249,168,37,.08));
+    border: 2px solid var(--dorado);
+    border-radius: 12px;
+    width: 160px;
+  }
+
+  .champ-trophy {
+    font-size: 32px;
+  }
+
+  .champ-flag {
+    margin-top: 6px;
+  }
+
+  .champ-flag img {
+    width: 40px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 0 6px rgba(249,168,37,.4);
+  }
+
+  .champ-name {
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--dorado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 6px;
+  }
+
+  .empty-bracket {
+    text-align: center;
+    padding: 60px;
+    color: #484F58;
+    font-size: 14px;
+  }
+
+  .empty {
+    color: #484F58;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 18px;
+    color: #484F58;
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-top: 1px solid var(--borde);
+    margin-top: 28px;
+  }
+</style>
+</head>
+<body>
+<div class='header'>
+  <div class='header-badge'>&#127942;</div>
+  <div>
+    <div class='header-title'>FIFA WORLD CUP 2026</div>
+    <div class='header-sub'>COPA MUNDIAL DE FUTBOL &mdash; 48 EQUIPOS / 12 GRUPOS</div>
+    <div class='header-hosts'>CANADA &bull; MEXICO &bull; USA</div>
+  </div>
+</div>
+<div class='container'>
+<div class='champion-banner'>
+  <div class='trophy-big'>&#127942;</div>
+  <div class='ctitle'>CAMPEON DEL MUNDO</div>
+  <div class='cname'><img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"> Francia</div>
+</div>
+<div class='tabs'>
+  <button class='tab active' onclick='showTab("grupos",this)'>GRUPOS</button>
+  <button class='tab' onclick='showTab("bracket",this)'>ELIMINATORIAS</button>
+</div>
+<div id='grupos' class='tab-content'>
+<div class='groups-grid'>
+<div class='group-card' style='--color:#1B3F8B'>
+<div class='group-header'>
+  <span class='group-letter'>A</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Australia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>4</span>
+  <span class='cell'>3</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Paises Bajos</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>7</span>
+  <span class='cell'>+2</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/jm.png' srcset='https://flagcdn.com/w80/jm.png 2x' alt='Jamaica' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Jamaica</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>7</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/uy.png' srcset='https://flagcdn.com/w80/uy.png 2x' alt='Uruguay' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Uruguay</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>6</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/jm.png' srcset='https://flagcdn.com/w80/jm.png 2x' alt='Jamaica' loading='lazy' onerror="this.style.display='none'"> Jamaica</span>
+  <span class='result-score'>1-2</span>
+  <span class='result-team right'>Australia <img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/jm.png' srcset='https://flagcdn.com/w80/jm.png 2x' alt='Jamaica' loading='lazy' onerror="this.style.display='none'"> Jamaica</span>
+  <span class='result-score'>1-0</span>
+  <span class='result-team right'>Uruguay <img class='flag' src='https://flagcdn.com/w40/uy.png' srcset='https://flagcdn.com/w80/uy.png 2x' alt='Uruguay' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/jm.png' srcset='https://flagcdn.com/w80/jm.png 2x' alt='Jamaica' loading='lazy' onerror="this.style.display='none'"> Jamaica</span>
+  <span class='result-score'>3-5</span>
+  <span class='result-team right'>Paises Bajos <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'"> Australia</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Uruguay <img class='flag' src='https://flagcdn.com/w40/uy.png' srcset='https://flagcdn.com/w80/uy.png 2x' alt='Uruguay' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'"> Australia</span>
+  <span class='result-score'>0-1</span>
+  <span class='result-team right'>Paises Bajos <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/uy.png' srcset='https://flagcdn.com/w80/uy.png 2x' alt='Uruguay' loading='lazy' onerror="this.style.display='none'"> Uruguay</span>
+  <span class='result-score'>4-3</span>
+  <span class='result-team right'>Paises Bajos <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#C62828'>
+<div class='group-header'>
+  <span class='group-letter'>B</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/kr.png' srcset='https://flagcdn.com/w80/kr.png 2x' alt='Corea del Sur' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Corea del Sur</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>5</span>
+  <span class='cell'>+4</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/eg.png' srcset='https://flagcdn.com/w80/eg.png 2x' alt='Egipto' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Egipto</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/cv.png' srcset='https://flagcdn.com/w80/cv.png 2x' alt='Cabo Verde' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Cabo Verde</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/co.png' srcset='https://flagcdn.com/w80/co.png 2x' alt='Colombia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Colombia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/kr.png' srcset='https://flagcdn.com/w80/kr.png 2x' alt='Corea del Sur' loading='lazy' onerror="this.style.display='none'"> Corea del Sur</span>
+  <span class='result-score'>3-1</span>
+  <span class='result-team right'>Egipto <img class='flag' src='https://flagcdn.com/w40/eg.png' srcset='https://flagcdn.com/w80/eg.png 2x' alt='Egipto' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/kr.png' srcset='https://flagcdn.com/w80/kr.png 2x' alt='Corea del Sur' loading='lazy' onerror="this.style.display='none'"> Corea del Sur</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Cabo Verde <img class='flag' src='https://flagcdn.com/w40/cv.png' srcset='https://flagcdn.com/w80/cv.png 2x' alt='Cabo Verde' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/kr.png' srcset='https://flagcdn.com/w80/kr.png 2x' alt='Corea del Sur' loading='lazy' onerror="this.style.display='none'"> Corea del Sur</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Colombia <img class='flag' src='https://flagcdn.com/w40/co.png' srcset='https://flagcdn.com/w80/co.png 2x' alt='Colombia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/eg.png' srcset='https://flagcdn.com/w80/eg.png 2x' alt='Egipto' loading='lazy' onerror="this.style.display='none'"> Egipto</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Cabo Verde <img class='flag' src='https://flagcdn.com/w40/cv.png' srcset='https://flagcdn.com/w80/cv.png 2x' alt='Cabo Verde' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/eg.png' srcset='https://flagcdn.com/w80/eg.png 2x' alt='Egipto' loading='lazy' onerror="this.style.display='none'"> Egipto</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Colombia <img class='flag' src='https://flagcdn.com/w40/co.png' srcset='https://flagcdn.com/w80/co.png 2x' alt='Colombia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/cv.png' srcset='https://flagcdn.com/w80/cv.png 2x' alt='Cabo Verde' loading='lazy' onerror="this.style.display='none'"> Cabo Verde</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Colombia <img class='flag' src='https://flagcdn.com/w40/co.png' srcset='https://flagcdn.com/w80/co.png 2x' alt='Colombia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#2E7D32'>
+<div class='group-header'>
+  <span class='group-letter'>C</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Marruecos</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>8</span>
+  <span class='cell'>3</span>
+  <span class='cell'>+5</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/bo.png' srcset='https://flagcdn.com/w80/bo.png 2x' alt='Bolivia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Bolivia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>4</span>
+  <span class='cell'>4</span>
+  <span class='cell'>+0</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/ht.png' srcset='https://flagcdn.com/w80/ht.png 2x' alt='Haiti' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Haiti</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>6</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/gh.png' srcset='https://flagcdn.com/w80/gh.png 2x' alt='Ghana' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Ghana</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>-4</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'"> Marruecos</span>
+  <span class='result-score'>4-2</span>
+  <span class='result-team right'>Ghana <img class='flag' src='https://flagcdn.com/w40/gh.png' srcset='https://flagcdn.com/w80/gh.png 2x' alt='Ghana' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'"> Marruecos</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Haiti <img class='flag' src='https://flagcdn.com/w40/ht.png' srcset='https://flagcdn.com/w80/ht.png 2x' alt='Haiti' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'"> Marruecos</span>
+  <span class='result-score'>2-0</span>
+  <span class='result-team right'>Bolivia <img class='flag' src='https://flagcdn.com/w40/bo.png' srcset='https://flagcdn.com/w80/bo.png 2x' alt='Bolivia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gh.png' srcset='https://flagcdn.com/w80/gh.png 2x' alt='Ghana' loading='lazy' onerror="this.style.display='none'"> Ghana</span>
+  <span class='result-score'>1-2</span>
+  <span class='result-team right'>Haiti <img class='flag' src='https://flagcdn.com/w40/ht.png' srcset='https://flagcdn.com/w80/ht.png 2x' alt='Haiti' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gh.png' srcset='https://flagcdn.com/w80/gh.png 2x' alt='Ghana' loading='lazy' onerror="this.style.display='none'"> Ghana</span>
+  <span class='result-score'>0-1</span>
+  <span class='result-team right'>Bolivia <img class='flag' src='https://flagcdn.com/w40/bo.png' srcset='https://flagcdn.com/w80/bo.png 2x' alt='Bolivia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ht.png' srcset='https://flagcdn.com/w80/ht.png 2x' alt='Haiti' loading='lazy' onerror="this.style.display='none'"> Haiti</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Bolivia <img class='flag' src='https://flagcdn.com/w40/bo.png' srcset='https://flagcdn.com/w80/bo.png 2x' alt='Bolivia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#5E35B1'>
+<div class='group-header'>
+  <span class='group-letter'>D</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Belgica</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/za.png' srcset='https://flagcdn.com/w80/za.png 2x' alt='Sudafrica' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Sudafrica</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+0</span>
+  <span class='cell pts'>4</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/jo.png' srcset='https://flagcdn.com/w80/jo.png 2x' alt='Jordania' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Jordania</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+0</span>
+  <span class='cell pts'>4</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/cw.png' srcset='https://flagcdn.com/w80/cw.png 2x' alt='Curazao' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Curazao</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>7</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'"> Belgica</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Sudafrica <img class='flag' src='https://flagcdn.com/w40/za.png' srcset='https://flagcdn.com/w80/za.png 2x' alt='Sudafrica' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'"> Belgica</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Curazao <img class='flag' src='https://flagcdn.com/w40/cw.png' srcset='https://flagcdn.com/w80/cw.png 2x' alt='Curazao' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'"> Belgica</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Jordania <img class='flag' src='https://flagcdn.com/w40/jo.png' srcset='https://flagcdn.com/w80/jo.png 2x' alt='Jordania' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/za.png' srcset='https://flagcdn.com/w80/za.png 2x' alt='Sudafrica' loading='lazy' onerror="this.style.display='none'"> Sudafrica</span>
+  <span class='result-score'>4-3</span>
+  <span class='result-team right'>Curazao <img class='flag' src='https://flagcdn.com/w40/cw.png' srcset='https://flagcdn.com/w80/cw.png 2x' alt='Curazao' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/za.png' srcset='https://flagcdn.com/w80/za.png 2x' alt='Sudafrica' loading='lazy' onerror="this.style.display='none'"> Sudafrica</span>
+  <span class='result-score'>1-1</span>
+  <span class='result-team right'>Jordania <img class='flag' src='https://flagcdn.com/w40/jo.png' srcset='https://flagcdn.com/w80/jo.png 2x' alt='Jordania' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/cw.png' srcset='https://flagcdn.com/w80/cw.png 2x' alt='Curazao' loading='lazy' onerror="this.style.display='none'"> Curazao</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Jordania <img class='flag' src='https://flagcdn.com/w40/jo.png' srcset='https://flagcdn.com/w80/jo.png 2x' alt='Jordania' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#F9A825'>
+<div class='group-header'>
+  <span class='group-letter'>E</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Mexico</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>5</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/uz.png' srcset='https://flagcdn.com/w80/uz.png 2x' alt='Uzbekistan' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Uzbekistan</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>6</span>
+  <span class='cell'>5</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/gb-sct.png' srcset='https://flagcdn.com/w80/gb-sct.png 2x' alt='Escocia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Escocia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>7</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/it.png' srcset='https://flagcdn.com/w80/it.png 2x' alt='Italia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Italia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>10</span>
+  <span class='cell'>+0</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'"> Mexico</span>
+  <span class='result-score'>4-3</span>
+  <span class='result-team right'>Italia <img class='flag' src='https://flagcdn.com/w40/it.png' srcset='https://flagcdn.com/w80/it.png 2x' alt='Italia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'"> Mexico</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Escocia <img class='flag' src='https://flagcdn.com/w40/gb-sct.png' srcset='https://flagcdn.com/w80/gb-sct.png 2x' alt='Escocia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'"> Mexico</span>
+  <span class='result-score'>0-1</span>
+  <span class='result-team right'>Uzbekistan <img class='flag' src='https://flagcdn.com/w40/uz.png' srcset='https://flagcdn.com/w80/uz.png 2x' alt='Uzbekistan' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/it.png' srcset='https://flagcdn.com/w80/it.png 2x' alt='Italia' loading='lazy' onerror="this.style.display='none'"> Italia</span>
+  <span class='result-score'>4-2</span>
+  <span class='result-team right'>Escocia <img class='flag' src='https://flagcdn.com/w40/gb-sct.png' srcset='https://flagcdn.com/w80/gb-sct.png 2x' alt='Escocia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/it.png' srcset='https://flagcdn.com/w80/it.png 2x' alt='Italia' loading='lazy' onerror="this.style.display='none'"> Italia</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Uzbekistan <img class='flag' src='https://flagcdn.com/w40/uz.png' srcset='https://flagcdn.com/w80/uz.png 2x' alt='Uzbekistan' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gb-sct.png' srcset='https://flagcdn.com/w80/gb-sct.png 2x' alt='Escocia' loading='lazy' onerror="this.style.display='none'"> Escocia</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Uzbekistan <img class='flag' src='https://flagcdn.com/w40/uz.png' srcset='https://flagcdn.com/w80/uz.png 2x' alt='Uzbekistan' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#00897B'>
+<div class='group-header'>
+  <span class='group-letter'>F</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Portugal</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/br.png' srcset='https://flagcdn.com/w80/br.png 2x' alt='Brasil' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Brasil</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Iran</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>7</span>
+  <span class='cell'>+2</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/ec.png' srcset='https://flagcdn.com/w80/ec.png 2x' alt='Ecuador' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Ecuador</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>11</span>
+  <span class='cell'>-4</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ec.png' srcset='https://flagcdn.com/w80/ec.png 2x' alt='Ecuador' loading='lazy' onerror="this.style.display='none'"> Ecuador</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Iran <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ec.png' srcset='https://flagcdn.com/w80/ec.png 2x' alt='Ecuador' loading='lazy' onerror="this.style.display='none'"> Ecuador</span>
+  <span class='result-score'>2-4</span>
+  <span class='result-team right'>Portugal <img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ec.png' srcset='https://flagcdn.com/w80/ec.png 2x' alt='Ecuador' loading='lazy' onerror="this.style.display='none'"> Ecuador</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Brasil <img class='flag' src='https://flagcdn.com/w40/br.png' srcset='https://flagcdn.com/w80/br.png 2x' alt='Brasil' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'"> Iran</span>
+  <span class='result-score'>3-1</span>
+  <span class='result-team right'>Portugal <img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'"> Iran</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Brasil <img class='flag' src='https://flagcdn.com/w40/br.png' srcset='https://flagcdn.com/w80/br.png 2x' alt='Brasil' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'"> Portugal</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Brasil <img class='flag' src='https://flagcdn.com/w40/br.png' srcset='https://flagcdn.com/w80/br.png 2x' alt='Brasil' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#D81B60'>
+<div class='group-header'>
+  <span class='group-letter'>G</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Francia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>3</span>
+  <span class='cell'>+6</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Inglaterra</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Turquia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>9</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/py.png' srcset='https://flagcdn.com/w80/py.png 2x' alt='Paraguay' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Paraguay</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>3</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-5</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'"> Turquia</span>
+  <span class='result-score'>3-1</span>
+  <span class='result-team right'>Paraguay <img class='flag' src='https://flagcdn.com/w40/py.png' srcset='https://flagcdn.com/w80/py.png 2x' alt='Paraguay' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'"> Turquia</span>
+  <span class='result-score'>2-4</span>
+  <span class='result-team right'>Inglaterra <img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'"> Turquia</span>
+  <span class='result-score'>2-4</span>
+  <span class='result-team right'>Francia <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/py.png' srcset='https://flagcdn.com/w80/py.png 2x' alt='Paraguay' loading='lazy' onerror="this.style.display='none'"> Paraguay</span>
+  <span class='result-score'>1-3</span>
+  <span class='result-team right'>Inglaterra <img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/py.png' srcset='https://flagcdn.com/w80/py.png 2x' alt='Paraguay' loading='lazy' onerror="this.style.display='none'"> Paraguay</span>
+  <span class='result-score'>1-2</span>
+  <span class='result-team right'>Francia <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'"> Inglaterra</span>
+  <span class='result-score'>0-3</span>
+  <span class='result-team right'>Francia <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#1565C0'>
+<div class='group-header'>
+  <span class='group-letter'>H</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/ar.png' srcset='https://flagcdn.com/w80/ar.png 2x' alt='Argentina' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Argentina</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>4</span>
+  <span class='cell'>+6</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/gb-wls.png' srcset='https://flagcdn.com/w80/gb-wls.png 2x' alt='Gales' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Gales</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>6</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Noruega</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>9</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/iq.png' srcset='https://flagcdn.com/w80/iq.png 2x' alt='Irak' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Irak</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>7</span>
+  <span class='cell'>10</span>
+  <span class='cell'>-3</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ar.png' srcset='https://flagcdn.com/w80/ar.png 2x' alt='Argentina' loading='lazy' onerror="this.style.display='none'"> Argentina</span>
+  <span class='result-score'>3-0</span>
+  <span class='result-team right'>Gales <img class='flag' src='https://flagcdn.com/w40/gb-wls.png' srcset='https://flagcdn.com/w80/gb-wls.png 2x' alt='Gales' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ar.png' srcset='https://flagcdn.com/w80/ar.png 2x' alt='Argentina' loading='lazy' onerror="this.style.display='none'"> Argentina</span>
+  <span class='result-score'>4-2</span>
+  <span class='result-team right'>Noruega <img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ar.png' srcset='https://flagcdn.com/w80/ar.png 2x' alt='Argentina' loading='lazy' onerror="this.style.display='none'"> Argentina</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Irak <img class='flag' src='https://flagcdn.com/w40/iq.png' srcset='https://flagcdn.com/w80/iq.png 2x' alt='Irak' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gb-wls.png' srcset='https://flagcdn.com/w80/gb-wls.png 2x' alt='Gales' loading='lazy' onerror="this.style.display='none'"> Gales</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Noruega <img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/gb-wls.png' srcset='https://flagcdn.com/w80/gb-wls.png 2x' alt='Gales' loading='lazy' onerror="this.style.display='none'"> Gales</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Irak <img class='flag' src='https://flagcdn.com/w40/iq.png' srcset='https://flagcdn.com/w80/iq.png 2x' alt='Irak' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'"> Noruega</span>
+  <span class='result-score'>4-3</span>
+  <span class='result-team right'>Irak <img class='flag' src='https://flagcdn.com/w40/iq.png' srcset='https://flagcdn.com/w80/iq.png 2x' alt='Irak' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#EF6C00'>
+<div class='group-header'>
+  <span class='group-letter'>I</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/us.png' srcset='https://flagcdn.com/w80/us.png 2x' alt='Estados Unidos' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Estados Unidos</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>9</span>
+  <span class='cell'>+0</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Tunez</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>9</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/qa.png' srcset='https://flagcdn.com/w80/qa.png 2x' alt='Catar' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Catar</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>9</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+3</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/sn.png' srcset='https://flagcdn.com/w80/sn.png 2x' alt='Senegal' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Senegal</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>4</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-4</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/qa.png' srcset='https://flagcdn.com/w80/qa.png 2x' alt='Catar' loading='lazy' onerror="this.style.display='none'"> Catar</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Tunez <img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/qa.png' srcset='https://flagcdn.com/w80/qa.png 2x' alt='Catar' loading='lazy' onerror="this.style.display='none'"> Catar</span>
+  <span class='result-score'>5-3</span>
+  <span class='result-team right'>Estados Unidos <img class='flag' src='https://flagcdn.com/w40/us.png' srcset='https://flagcdn.com/w80/us.png 2x' alt='Estados Unidos' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/qa.png' srcset='https://flagcdn.com/w80/qa.png 2x' alt='Catar' loading='lazy' onerror="this.style.display='none'"> Catar</span>
+  <span class='result-score'>2-0</span>
+  <span class='result-team right'>Senegal <img class='flag' src='https://flagcdn.com/w40/sn.png' srcset='https://flagcdn.com/w80/sn.png 2x' alt='Senegal' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'"> Tunez</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Estados Unidos <img class='flag' src='https://flagcdn.com/w40/us.png' srcset='https://flagcdn.com/w80/us.png 2x' alt='Estados Unidos' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'"> Tunez</span>
+  <span class='result-score'>4-3</span>
+  <span class='result-team right'>Senegal <img class='flag' src='https://flagcdn.com/w40/sn.png' srcset='https://flagcdn.com/w80/sn.png 2x' alt='Senegal' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/us.png' srcset='https://flagcdn.com/w80/us.png 2x' alt='Estados Unidos' loading='lazy' onerror="this.style.display='none'"> Estados Unidos</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Senegal <img class='flag' src='https://flagcdn.com/w40/sn.png' srcset='https://flagcdn.com/w80/sn.png 2x' alt='Senegal' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#6A1B9A'>
+<div class='group-header'>
+  <span class='group-letter'>J</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/sa.png' srcset='https://flagcdn.com/w80/sa.png 2x' alt='Arabia Saudita' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Arabia Saudita</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+4</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Croacia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>9</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/ci.png' srcset='https://flagcdn.com/w80/ci.png 2x' alt='Costa de Marfil' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Costa de Marfil</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>4</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/nz.png' srcset='https://flagcdn.com/w80/nz.png 2x' alt='Nueva Zelanda' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Nueva Zelanda</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>11</span>
+  <span class='cell'>-6</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/nz.png' srcset='https://flagcdn.com/w80/nz.png 2x' alt='Nueva Zelanda' loading='lazy' onerror="this.style.display='none'"> Nueva Zelanda</span>
+  <span class='result-score'>0-3</span>
+  <span class='result-team right'>Costa de Marfil <img class='flag' src='https://flagcdn.com/w40/ci.png' srcset='https://flagcdn.com/w80/ci.png 2x' alt='Costa de Marfil' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/nz.png' srcset='https://flagcdn.com/w80/nz.png 2x' alt='Nueva Zelanda' loading='lazy' onerror="this.style.display='none'"> Nueva Zelanda</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Arabia Saudita <img class='flag' src='https://flagcdn.com/w40/sa.png' srcset='https://flagcdn.com/w80/sa.png 2x' alt='Arabia Saudita' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/nz.png' srcset='https://flagcdn.com/w80/nz.png 2x' alt='Nueva Zelanda' loading='lazy' onerror="this.style.display='none'"> Nueva Zelanda</span>
+  <span class='result-score'>2-4</span>
+  <span class='result-team right'>Croacia <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ci.png' srcset='https://flagcdn.com/w80/ci.png 2x' alt='Costa de Marfil' loading='lazy' onerror="this.style.display='none'"> Costa de Marfil</span>
+  <span class='result-score'>0-1</span>
+  <span class='result-team right'>Arabia Saudita <img class='flag' src='https://flagcdn.com/w40/sa.png' srcset='https://flagcdn.com/w80/sa.png 2x' alt='Arabia Saudita' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ci.png' srcset='https://flagcdn.com/w80/ci.png 2x' alt='Costa de Marfil' loading='lazy' onerror="this.style.display='none'"> Costa de Marfil</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Croacia <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/sa.png' srcset='https://flagcdn.com/w80/sa.png 2x' alt='Arabia Saudita' loading='lazy' onerror="this.style.display='none'"> Arabia Saudita</span>
+  <span class='result-score'>5-3</span>
+  <span class='result-team right'>Croacia <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#43A047'>
+<div class='group-header'>
+  <span class='group-letter'>K</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Espana</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>10</span>
+  <span class='cell'>3</span>
+  <span class='cell'>+7</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Alemania</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>8</span>
+  <span class='cell'>6</span>
+  <span class='cell'>+2</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Argelia</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>4</span>
+  <span class='cell'>6</span>
+  <span class='cell'>-2</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/pa.png' srcset='https://flagcdn.com/w80/pa.png 2x' alt='Panama' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Panama</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>1</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-7</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/pa.png' srcset='https://flagcdn.com/w80/pa.png 2x' alt='Panama' loading='lazy' onerror="this.style.display='none'"> Panama</span>
+  <span class='result-score'>1-2</span>
+  <span class='result-team right'>Alemania <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/pa.png' srcset='https://flagcdn.com/w80/pa.png 2x' alt='Panama' loading='lazy' onerror="this.style.display='none'"> Panama</span>
+  <span class='result-score'>0-3</span>
+  <span class='result-team right'>Espana <img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/pa.png' srcset='https://flagcdn.com/w80/pa.png 2x' alt='Panama' loading='lazy' onerror="this.style.display='none'"> Panama</span>
+  <span class='result-score'>0-3</span>
+  <span class='result-team right'>Argelia <img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'"> Alemania</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Espana <img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'"> Alemania</span>
+  <span class='result-score'>3-1</span>
+  <span class='result-team right'>Argelia <img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'"> Espana</span>
+  <span class='result-score'>3-0</span>
+  <span class='result-team right'>Argelia <img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+<div class='group-card' style='--color:#00ACC1'>
+<div class='group-header'>
+  <span class='group-letter'>L</span>
+  <span class='group-label'>GRUPO</span>
+</div>
+<div class='group-body'>
+<div class='table-header'>
+  <span>Equipo</span>
+  <span>PJ</span><span>GF</span><span>GC</span>
+  <span>DG</span><span>Pts</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/ch.png' srcset='https://flagcdn.com/w80/ch.png 2x' alt='Suiza' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Suiza</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>8</span>
+  <span class='cell'>5</span>
+  <span class='cell'>+3</span>
+  <span class='cell pts'>9</span>
+</div>
+<div class='table-row top2'>
+  <div class='team-cell'><span class='dot dot-verde'></span><img class='flag' src='https://flagcdn.com/w40/jp.png' srcset='https://flagcdn.com/w80/jp.png 2x' alt='Japon' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Japon</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>4</span>
+  <span class='cell'>+1</span>
+  <span class='cell pts'>6</span>
+</div>
+<div class='table-row top3'>
+  <div class='team-cell'><span class='dot dot-ambar'></span><img class='flag' src='https://flagcdn.com/w40/at.png' srcset='https://flagcdn.com/w80/at.png 2x' alt='Austria' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Austria</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>8</span>
+  <span class='cell'>9</span>
+  <span class='cell'>-1</span>
+  <span class='cell pts'>3</span>
+</div>
+<div class='table-row'>
+  <div class='team-cell'><span class='dot dot-gris'></span><img class='flag' src='https://flagcdn.com/w40/ca.png' srcset='https://flagcdn.com/w80/ca.png 2x' alt='Canada' loading='lazy' onerror="this.style.display='none'"><span class='tname-g'>Canada</span></div>
+  <span class='cell'>3</span>
+  <span class='cell'>5</span>
+  <span class='cell'>8</span>
+  <span class='cell'>-3</span>
+  <span class='cell pts'>0</span>
+</div>
+<div class='results-section'><div class='results-title'>RESULTADOS</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/at.png' srcset='https://flagcdn.com/w80/at.png 2x' alt='Austria' loading='lazy' onerror="this.style.display='none'"> Austria</span>
+  <span class='result-score'>3-4</span>
+  <span class='result-team right'>Suiza <img class='flag' src='https://flagcdn.com/w40/ch.png' srcset='https://flagcdn.com/w80/ch.png 2x' alt='Suiza' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Atlanta</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/at.png' srcset='https://flagcdn.com/w80/at.png 2x' alt='Austria' loading='lazy' onerror="this.style.display='none'"> Austria</span>
+  <span class='result-score'>2-3</span>
+  <span class='result-team right'>Japon <img class='flag' src='https://flagcdn.com/w40/jp.png' srcset='https://flagcdn.com/w80/jp.png 2x' alt='Japon' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Boston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/at.png' srcset='https://flagcdn.com/w80/at.png 2x' alt='Austria' loading='lazy' onerror="this.style.display='none'"> Austria</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Canada <img class='flag' src='https://flagcdn.com/w40/ca.png' srcset='https://flagcdn.com/w80/ca.png 2x' alt='Canada' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Dallas</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ch.png' srcset='https://flagcdn.com/w80/ch.png 2x' alt='Suiza' loading='lazy' onerror="this.style.display='none'"> Suiza</span>
+  <span class='result-score'>1-0</span>
+  <span class='result-team right'>Japon <img class='flag' src='https://flagcdn.com/w40/jp.png' srcset='https://flagcdn.com/w80/jp.png 2x' alt='Japon' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Houston</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/ch.png' srcset='https://flagcdn.com/w80/ch.png 2x' alt='Suiza' loading='lazy' onerror="this.style.display='none'"> Suiza</span>
+  <span class='result-score'>3-2</span>
+  <span class='result-team right'>Canada <img class='flag' src='https://flagcdn.com/w40/ca.png' srcset='https://flagcdn.com/w80/ca.png 2x' alt='Canada' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Kansas City</div>
+<div class='result-row'>
+  <span class='result-team'><img class='flag' src='https://flagcdn.com/w40/jp.png' srcset='https://flagcdn.com/w80/jp.png 2x' alt='Japon' loading='lazy' onerror="this.style.display='none'"> Japon</span>
+  <span class='result-score'>2-1</span>
+  <span class='result-team right'>Canada <img class='flag' src='https://flagcdn.com/w40/ca.png' srcset='https://flagcdn.com/w80/ca.png 2x' alt='Canada' loading='lazy' onerror="this.style.display='none'"></span>
+</div>
+<div class='result-meta'> &middot; Los Angeles</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id='bracket' class='tab-content' style='display:none'>
+<div class='leyenda'>
+  <span class='ley-item'><span class='dot dot-verde'></span> Clasificado directo</span>
+  <span class='ley-item'><span class='dot dot-ambar'></span> Posible mejor 3ro</span>
+  <span class='ley-item'><span class='dot dot-gris'></span> Eliminado</span>
+</div>
+<div class='bracket-wrapper'>
+<div class='bracket'>
+<div class='col col-left'>
+<div class='round-label col-azul'>DIECISEISAVOS</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Australia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/eg.png' srcset='https://flagcdn.com/w80/eg.png 2x' alt='Egipto' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Egipto</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Marruecos</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/za.png' srcset='https://flagcdn.com/w80/za.png 2x' alt='Sudafrica' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Sudafrica</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Gillette Stadium &middot; Boston</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Mexico</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/br.png' srcset='https://flagcdn.com/w80/br.png 2x' alt='Brasil' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Brasil</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; AT&amp;T Stadium &middot; Dallas</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Francia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/gb-wls.png' srcset='https://flagcdn.com/w80/gb-wls.png 2x' alt='Gales' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Gales</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; NRG Stadium &middot; Houston</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/us.png' srcset='https://flagcdn.com/w80/us.png 2x' alt='Estados Unidos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Estados Unidos</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Croacia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Arrowhead Stadium &middot; Kansas City</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Espana</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/jp.png' srcset='https://flagcdn.com/w80/jp.png 2x' alt='Japon' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Japon</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; SoFi Stadium &middot; Los Angeles</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/kr.png' srcset='https://flagcdn.com/w80/kr.png 2x' alt='Corea del Sur' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Corea del Sur</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Paises Bajos</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Hard Rock Stadium &middot; Miami</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Belgica</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/bo.png' srcset='https://flagcdn.com/w80/bo.png 2x' alt='Bolivia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Bolivia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; MetLife Stadium &middot; New York/New Jersey</span></div>
+</div>
+</div>
+<div class='col col-left'>
+<div class='round-label col-verde'>OCTAVOS</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Australia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/ma.png' srcset='https://flagcdn.com/w80/ma.png 2x' alt='Marruecos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Marruecos</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/mx.png' srcset='https://flagcdn.com/w80/mx.png 2x' alt='Mexico' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Mexico</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Francia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Gillette Stadium &middot; Boston</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Croacia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/es.png' srcset='https://flagcdn.com/w80/es.png 2x' alt='Espana' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Espana</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; AT&amp;T Stadium &middot; Dallas</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Paises Bajos</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/be.png' srcset='https://flagcdn.com/w80/be.png 2x' alt='Belgica' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Belgica</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; NRG Stadium &middot; Houston</span></div>
+</div>
+</div>
+<div class='col col-left'>
+<div class='round-label col-naranja'>CUARTOS</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/au.png' srcset='https://flagcdn.com/w80/au.png 2x' alt='Australia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Australia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Francia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Croacia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/nl.png' srcset='https://flagcdn.com/w80/nl.png 2x' alt='Paises Bajos' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Paises Bajos</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Gillette Stadium &middot; Boston</span></div>
+</div>
+</div>
+<div class='col col-left'>
+<div class='round-label col-rojo'>SEMIFINAL</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Francia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>5</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Croacia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+</div>
+<div class='col col-center'>
+<div class='round-label col-dorado'>FINAL</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Francia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Alemania</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+<div class='round-label col-bronce'>TERCER PUESTO</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/hr.png' srcset='https://flagcdn.com/w80/hr.png 2x' alt='Croacia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Croacia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Iran</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Mercedes-Benz Stadium &middot; Atlanta</span></div>
+</div>
+<div class='champ-center'>
+  <div class='champ-trophy'>&#127942;</div>
+  <div class='champ-flag'><img class='flag' src='https://flagcdn.com/w40/fr.png' srcset='https://flagcdn.com/w80/fr.png 2x' alt='Francia' loading='lazy' onerror="this.style.display='none'"></div>
+  <div class='champ-name'>Francia</div>
+</div>
+</div>
+<div class='col col-right'>
+<div class='round-label col-rojo'>SEMIFINAL</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Alemania</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Iran</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Gillette Stadium &middot; Boston</span></div>
+</div>
+</div>
+<div class='col col-right'>
+<div class='round-label col-naranja'>CUARTOS</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Portugal</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Alemania</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; AT&amp;T Stadium &middot; Dallas</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Iran</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Turquia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; NRG Stadium &middot; Houston</span></div>
+</div>
+</div>
+<div class='col col-right'>
+<div class='round-label col-verde'>OCTAVOS</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Portugal</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Inglaterra</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Arrowhead Stadium &middot; Kansas City</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Tunez</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Alemania</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; SoFi Stadium &middot; Los Angeles</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Iran</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Noruega</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Hard Rock Stadium &middot; Miami</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Turquia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Argelia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; MetLife Stadium &middot; New York/New Jersey</span></div>
+</div>
+</div>
+<div class='col col-right'>
+<div class='round-label col-azul'>DIECISEISAVOS</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/pt.png' srcset='https://flagcdn.com/w80/pt.png 2x' alt='Portugal' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Portugal</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/uz.png' srcset='https://flagcdn.com/w80/uz.png 2x' alt='Uzbekistan' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Uzbekistan</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Lincoln Financial Field &middot; Philadelphia</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/ar.png' srcset='https://flagcdn.com/w80/ar.png 2x' alt='Argentina' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Argentina</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/gb-eng.png' srcset='https://flagcdn.com/w80/gb-eng.png 2x' alt='Inglaterra' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Inglaterra</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Levi's Stadium &middot; San Francisco</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/sa.png' srcset='https://flagcdn.com/w80/sa.png 2x' alt='Arabia Saudita' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Arabia Saudita</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/tn.png' srcset='https://flagcdn.com/w80/tn.png 2x' alt='Tunez' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Tunez</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Lumen Field &middot; Seattle</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/ch.png' srcset='https://flagcdn.com/w80/ch.png 2x' alt='Suiza' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Suiza</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/de.png' srcset='https://flagcdn.com/w80/de.png 2x' alt='Alemania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Alemania</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>4</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; BMO Field &middot; Toronto</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/ir.png' srcset='https://flagcdn.com/w80/ir.png 2x' alt='Iran' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Iran</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/qa.png' srcset='https://flagcdn.com/w80/qa.png 2x' alt='Catar' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Catar</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; BC Place &middot; Vancouver</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/jo.png' srcset='https://flagcdn.com/w80/jo.png 2x' alt='Jordania' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Jordania</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/no.png' srcset='https://flagcdn.com/w80/no.png 2x' alt='Noruega' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Noruega</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Estadio Akron &middot; Guadalajara</span></div>
+</div>
+<div class='match'>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/tr.png' srcset='https://flagcdn.com/w80/tr.png 2x' alt='Turquia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Turquia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>2</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/gb-sct.png' srcset='https://flagcdn.com/w80/gb-sct.png 2x' alt='Escocia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Escocia</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>1</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Estadio Azteca &middot; Ciudad de Mexico</span></div>
+</div>
+<div class='match'>
+  <div class='match-team '>
+    <img class='flag' src='https://flagcdn.com/w40/jm.png' srcset='https://flagcdn.com/w80/jm.png 2x' alt='Jamaica' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Jamaica</span>
+    <div class='score-block'>
+      
+      <span class='tscore '>0</span>
+    </div>
+  </div>
+  <div class='match-divider'></div>
+  <div class='match-team win'>
+    <img class='flag' src='https://flagcdn.com/w40/dz.png' srcset='https://flagcdn.com/w80/dz.png 2x' alt='Argelia' loading='lazy' onerror="this.style.display='none'">
+    <span class='tname'>Argelia</span>
+    <div class='score-block'>
+      
+      <span class='tscore score-win'>3</span>
+    </div>
+  </div>
+  <div class='match-meta'><span class='meta-est'>&#127974; Estadio BBVA &middot; Monterrey</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='footer'>
+  SISTEMA MUNDIAL TPO &middot; FASE ACTUAL: FINAL
+</div>
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).style.display = 'block';
+  btn.classList.add('active');
+}
+</script>
+</body></html>
